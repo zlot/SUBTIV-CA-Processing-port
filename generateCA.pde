@@ -3,7 +3,7 @@ void generateCA() {
   //      SETUP
   ////////////////////////////////////    
   final int AMOUNT_OF_PIXELS = width*height;
-  int possibleRules[] = {30,90,182,73,77,41,47,45,165,78,85};
+  int possibleRules[] = {30, 90, 182, 73, 77, 41, 47, 45, 165, 78, 85};
   int rule = possibleRules[round(random(possibleRules.length-1))];
   int widthCA = (width/2)+1;
   int heightCA = (height/2)+1;
@@ -73,49 +73,32 @@ void generateCA() {
     for(short x=0; x<widthCA; x++) {
       PVector v1 = new PVector(x*spacer,y*spacer);
       PVector v2 = new PVector(width/4,height/4);
-//      vertices.add(v1.sub(v2));
-//      vertices.add(v1);
       if(pixelGrid[y*widthCA + x] == 1) {
         fill(235);
       } else {
         fill(0);
       }
-      rect(v1.x,v1.y,1,1);
+      rect(v1.x,v1.y,1,1); // draw the cell.
       noFill();
     }
   }
+  
   // get image of CA to manipulate
   PImage caRender = new PImage();
-  caRender = get(0, 0, heightCA, widthCA+heightCA);
   
+  caRender = get(0,0,widthCA,heightCA);
+  //TOP RIGHT
+  image(caRender,width/2,0);
+  //BOTTOM LEFT    
   pushMatrix();
-  set(width/2,0,caRender);
+    translate(width/2,height);
+    rotate(PI);
+    image(caRender,0,0);
   popMatrix();
-  
+  //BOTTOM RIGHT
   pushMatrix();
-  set(0,height/2,caRender);
-  popMatrix();
-  
-  pushMatrix();
-  set(width/2,height/2,caRender);
-  popMatrix();
-  
-//  pushMatrix();
-//  translate(width/2, height);
-//  rotate(PI);
-//  //set(width/2,height/2,caRender);
-//  image(caRender,0,0);
-//  popMatrix();
-//  
-//  pushMatrix();
-//  translate(width/4, height/4);
-//  rotateX(180);
-//  popMatrix();
-//  
-//  pushMatrix();
-//  translate(width*0.75, height/4);
-//  rotateX(180);
-//  rotateY(180);
-//  popMatrix();  
-  
+    translate(width,height);
+    rotate(PI);
+    image(caRender,0,0);
+  popMatrix();  
 }

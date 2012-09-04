@@ -3,7 +3,7 @@ import processing.opengl.*;
 import toxi.processing.*;
 
 void setup() {
-  size(650, 650, OPENGL);
+  size(650, 650);
   background(30);
   frameRate(3);
   noStroke();
@@ -11,9 +11,7 @@ void setup() {
 }
 
 void draw() {
-   
 }
-
 
 void keyPressed() {
   pushStyle();
